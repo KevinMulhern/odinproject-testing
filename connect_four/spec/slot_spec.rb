@@ -4,15 +4,15 @@ RSpec.describe Slot do
   describe '#value' do
     subject(:slot) { Slot.new }
 
-    it 'has a initial value of nil' do
-      expect(slot.value).to be nil
+    it 'has a empty string as a default value' do
+      expect(slot.value).to eql(" ")
     end
 
     context 'when a value is set for the slot' do
 
-      it 'has a value of 7' do
-        slot.value = 7
-        expect(slot.value).to eql(7)
+      it 'can set a value' do
+        slot.value = 'R'
+        expect(slot.value).to eql('R')
       end
     end
   end

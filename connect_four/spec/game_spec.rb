@@ -53,8 +53,3 @@ describe Game do
     end
   end
 end
-
-
-# do I inject anything into game
-# game will have two players, those can be injected in.
-# game will have a board that can be injected in
