@@ -10,8 +10,13 @@ class Game
     @current_player ||= player_1
   end
 
+  def set_position(position)
+    @find_position = nil
+    board.set_position(find_position(position).slot, current_player.token)
+  end
+
   def over?
-    board.winner?
+    board.winning_move?(find_position.index, current_player.token)
   end
 
   def get_position
@@ -23,6 +28,11 @@ class Game
   end
 
   private
+
+  def find_position(position = nil)
+    puts 'I think the problem is in here'
+    @find_position ||= FindPosition.new(position, board.board)
+  end
 
   def player_1
     players[0]

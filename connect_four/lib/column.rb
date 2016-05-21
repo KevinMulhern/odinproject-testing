@@ -6,7 +6,7 @@ class Column
     @board = board
   end
 
-  def make_column
+  def build
     Array.new(6).map.with_index { |slot, index| slot = board[index][position]}
   end
 end

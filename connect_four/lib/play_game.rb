@@ -1,66 +1,39 @@
 require_relative 'game'
 require_relative 'board'
 require_relative 'player'
+require_relative 'find_position'
 
 def colors
-  ['red', 'yellow']
+  ['R', 'Y']
+end
+
+def create_players
+  2.times do |num|
+    print 'Hi, what is your name: '
+    name = gets.chomp
+    puts"you will be #{colors[num - 1]}"
+    players << Player.new(name, colors[num])
+  end
 end
 
 def players
   @players ||= []
 end
 
-def create_players
-  i = 1
-  while i <= 2
-    print 'Hi, what is your name: '
-    name = gets.chomp
-    puts"you will be #{colors[i - 1]}"
-    players << Player.new(name, colors[i])
-    i += 1
-  end
-end
-
-
-system 'clear'
-
 create_players
-board = Board.new([])
+board = Board.new()
 game = Game.new(players, board)
 
 loop do
-   board.set_position(game.get_position, game.current_player.color)
-   break if game.over?
-   game.switch_players
+  # system 'clear'
+  board.show
+  position = game.get_position - 1
+  game.set_position(position)
+  if game.over?
+    puts game.current_player.name
+    break
+  end
+  game.switch_players
  end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# grid = []
-# board = Board.new(grid)
-# game = Game.new(board)
-#
-
-#
-#
-#
-# def create_players
-#   Array.new(2) { Player.new()}
-# end
-#
-# def colors
-#   ['Red', 'yellow']
-# end

@@ -1,9 +1,10 @@
 require_relative 'slot'
-require_relative 'set_position'
+require_relative 'winning_move'
+
 class Board
 
-  def set_position(position, token)
-    SetPosition.new(position, token, board).on_board
+  def set_position(slot, token)
+    slot.value = token
   end
 
   def show
@@ -14,14 +15,20 @@ class Board
     @board ||= Array.new(6) { Array.new(7) { slot } }
   end
 
-  private
-
-  def row_parser(row)
-    row.map  { |slot| "  #{slot.value}  |" }.join
+  def winning_move?(position, token)
+    puts 'in here'
+    puts position.inspect
+    WinningMove.new(position, token, board).any?
   end
+
+  private
 
   def slot
     Slot.new
+  end
+
+  def row_parser(row)
+    row.map { |slot| "  #{slot.value}  |" }.join
   end
 
   def divider
@@ -33,9 +40,9 @@ class Board
   end
 end
 
-board = Board.new
-board.show
-board.set_position(2, '6')
-board.show
-board.set_position(2,'7')
-board.show
+# b = Board.new()
+# b.show
+# b.set_position(2, 'R')
+# b.show
+# b.set_position(1, 'R')
+# b.show

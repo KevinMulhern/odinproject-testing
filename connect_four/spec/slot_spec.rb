@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'slot'
 
 RSpec.describe Slot do
@@ -9,12 +10,10 @@ RSpec.describe Slot do
     end
 
     context 'when a value is set for the slot' do
-
       it 'can set a value' do
         slot.value = 'R'
         expect(slot.value).to eql('R')
       end
     end
   end
-
 end
