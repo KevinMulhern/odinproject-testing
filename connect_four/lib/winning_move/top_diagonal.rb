@@ -29,7 +29,6 @@ class WinningMove
     end
 
     def right_slots
-      puts "left diagonal #{left_diagonal}"
       right_diagonal.select.with_index do |slot, index|
         index <= 3
       end
