@@ -39,9 +39,6 @@ class WinningMove
     end
 
     def right_diagonal
-      # puts 'debugging'
-      # puts "right_slots_indexes: #{right_slots_indexes}"
-      # puts "smallest_right: #{smallest_right}"
       0.upto(smallest_right).collect do |index|
         board[rows[index]][right_slots_indexes[index]]
       end
