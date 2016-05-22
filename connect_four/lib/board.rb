@@ -16,9 +16,11 @@ class Board
   end
 
   def winning_move?(position, token)
-    puts 'in here'
-    puts position.inspect
     WinningMove.new(position, token, board).any?
+  end
+
+  def draw?
+    board.flatten.none? { |slots| slot.value === "" }
   end
 
   private

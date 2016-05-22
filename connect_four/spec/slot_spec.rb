@@ -6,7 +6,7 @@ RSpec.describe Slot do
     subject(:slot) { Slot.new }
 
     it 'has a empty string as a default value' do
-      expect(slot.value).to eql(" ")
+      expect(slot.value).to eql("")
     end
 
     context 'when a value is set for the slot' do

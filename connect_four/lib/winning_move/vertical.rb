@@ -11,28 +11,17 @@ class WinningMove
     end
 
     def four_in_a_row?
-      # puts 'general details'
-      # puts position.inspect
-      # puts token
-      # p board
-      # puts 'below slots'
-      # p below_slots_match?
-      # p below_slots
-      # p below_slots.each { |slot| puts slot.value }
-      # puts "above slots"
-      # p above_slots_match?
-      # p above_slots.each { |slot| puts slot.value }
       below_slots_match? || above_slots_match?
     end
 
     private
 
     def below_slots_match?
-      below_slots.all? { |slot| slot.value == token }
+      below_slots.all? { |slot| slot.value == token } && below_slots.length == 4
     end
 
     def above_slots_match?
-      above_slots.all? { |slot| slot.value == token }
+      above_slots.all? { |slot| slot.value == token } && above_slots.length == 4
     end
 
     def below_slots
@@ -56,7 +45,7 @@ class WinningMove
     end
 
     def column
-      @column ||= Column.new(position.first, board).build
+      @column ||= Column.new(position[1], board).build
     end
 
     def position_index

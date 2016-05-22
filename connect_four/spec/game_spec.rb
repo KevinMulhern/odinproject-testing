@@ -9,7 +9,7 @@ RSpec.describe Game do
       player_2,
     ]
   }
-  let(:board) { double('Board', winning_move?: winning_move) }
+  let(:board) { double('Board', winning_move?: winning_move, board: created_board ) }
   let(:player_1) { double('Player', token: 'R', get_position: position) }
   let(:player_2) { double('Player', token: 'Y', get_position: position) }
   let(:position) { nil }
@@ -17,9 +17,10 @@ RSpec.describe Game do
   let(:current_player) { player_1 }
   let(:winning_move) { }
   let(:find_position) { double('FindPosition', index: 5)}
+  let(:created_board) { [] }
 
   before do
-    allow(FindPosition).to receive(:new).with(nil, board).
+    allow(FindPosition).to receive(:new).with(nil, created_board).
       and_return(find_position)
     allow(game).to receive(:current_player).and_return(current_player)
   end

@@ -2,12 +2,12 @@ require 'spec_helper'
 require 'board'
 
 RSpec.describe Board do
-  subject(:board) { Board.new}
+  subject(:board) { Board.new }
   let(:choosen_slot) { double('Slot') }
   let(:choosen_slot) { board.board[1][5]}
   let(:position) { 2 }
-  let(:token) { 'R' }
-  let(:slot) { double('Slot', value: "" )}
+  let(:token) { "R" }
+  let(:slot) { double('Slot') }
   let(:created_board) {
     [
       [slot, slot, slot, slot, slot, slot, slot],
@@ -18,6 +18,12 @@ RSpec.describe Board do
       [slot, slot, slot, slot, slot, slot, slot],
     ]
   }
+  let(:value) { "" }
+
+  before do
+    allow(Slot).to receive(:new).and_return(slot)
+    allow(slot).to receive(:value).and_return(value)
+  end
 
   describe '#new' do
     it 'intializes a new board' do
@@ -26,14 +32,16 @@ RSpec.describe Board do
   end
 
   describe '#set_position' do
+    let(:value) { "R" }
+
     before do
-      allow(slot).to receive(:value=).with(token)
+      allow(slot).to receive(:value=).with(token).and_return(token)
     end
 
     it 'sets a position on the board' do
       board.set_position(choosen_slot, token)
 
-      expect(board.board[1][5].value).to eql('R')
+      expect(board.board[1][5].value).to eql("R")
     end
   end
 
@@ -45,10 +53,6 @@ RSpec.describe Board do
   end
 
   describe '#board' do
-    before do
-      allow(Slot).to receive(:new).and_return(slot)
-    end
-
     it 'returns a board' do
       expect(board.board).to eql(created_board)
     end
@@ -82,5 +86,12 @@ RSpec.describe Board do
       end
     end
   end
-end
 
+  describe '#draw?' do
+    let(:value) { "R" }
+
+    it 'returns true when there is a draw' do
+      expect(board.draw?).to eql(true)
+    end
+  end
+end

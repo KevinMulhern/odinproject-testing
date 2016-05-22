@@ -30,7 +30,6 @@ class Game
   private
 
   def find_position(position = nil)
-    puts 'I think the problem is in here'
     @find_position ||= FindPosition.new(position, board.board)
   end
 

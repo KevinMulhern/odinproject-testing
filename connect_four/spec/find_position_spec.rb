@@ -15,16 +15,18 @@ RSpec.describe FindPosition do
   end
 
   describe '#slot' do
-
     it 'returns the choosen slot' do
       expect(find_position.slot).to eql(board.board[5][1])
     end
   end
 
   describe '#index' do
+    before do
+      column.build.last.value = 'R'
+    end
+    
     it 'returns the choosen slots index on the board' do
       expect(find_position.index).to eql([5,1])
     end
   end
 end
-

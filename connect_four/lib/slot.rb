@@ -2,6 +2,6 @@ class Slot
     attr_accessor :value
 
     def value
-      @value ||= " "
+      @value ||= ""
     end
 end
