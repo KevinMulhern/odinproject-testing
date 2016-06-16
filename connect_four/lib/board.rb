@@ -41,10 +41,3 @@ class Board
     board.first.size
   end
 end
-
-# b = Board.new()
-# b.show
-# b.set_position(2, 'R')
-# b.show
-# b.set_position(1, 'R')
-# b.show
